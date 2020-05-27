@@ -9,6 +9,6 @@ jobs:
       - run: 
         - name: Sending deployment markers to event bridge
         - command: |
-          echo "sending deployment markers to event bridge..."
+            echo "sending deployment markers to event bridge..."
 
 
