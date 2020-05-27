@@ -4,11 +4,11 @@ jobs:
   deploy-production: 
     docker:
       - image: circleci/node:12
-    steps:
+   steps:
       - checkout
-      - run: 
-        name: Sending deployment markers to event bridge
-        command: |
-          echo "sending deployment markers to event bridge..."
+      - run:
+          name: Send deployment markers
+          command: |
+            echo "sending deployment markers..."
 
 
