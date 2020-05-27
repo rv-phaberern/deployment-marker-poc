@@ -14,13 +14,3 @@ jobs:
       - checkout
       - run: echo "hello from deployment-marker job..."
 
-workflows:
-  deploy-staging:
-    jobs:
-      - build
-      - deploy
-  deploy-production:
-    jobs:
-      - build
-      - deploy
-      - deployment-markers
