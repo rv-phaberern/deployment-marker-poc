@@ -7,8 +7,8 @@ jobs:
     steps:
       - checkout
       - run: 
-        - name: Sending deployment markers to event bridge
-        - command: |
-            echo "sending deployment markers to event bridge..."
+        name: Sending deployment markers to event bridge
+        command: |
+          echo "sending deployment markers to event bridge..."
 
 
