@@ -1,14 +1,16 @@
 version: 2.1
 
-jobs:     
-  deploy-production: 
+jobs:
+  deploy-production:
     docker:
       - image: circleci/node:12
-   steps:
+    steps:
       - checkout
       - run:
           name: Send deployment markers
           command: |
             echo "sending deployment markers..."
+
+
 
 
