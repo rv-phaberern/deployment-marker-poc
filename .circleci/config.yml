@@ -20,3 +20,10 @@ jobs:
       - checkout
       - run: echo "hello from deployment-marker job..."
 
+workflows:
+  everything:
+    jobs: 
+      - build
+      - deploy
+      - deployment-markers
+
