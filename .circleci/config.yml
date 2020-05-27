@@ -1,29 +1,14 @@
 version: 2.1
 
-jobs: 
-  build:
-    docker:
-      - image: circleci/node:12
-    steps:
-      - checkout 
-      - run: echo "hello from build job..."
-  deploy:
-    docker:
-      - image: circleci/node:12
-    steps:
-      - checkout 
-      - run: echo "hello from deploy job..."
-  deployment-markers: 
+jobs:     
+  deploy-production: 
     docker:
       - image: circleci/node:12
     steps:
       - checkout
-      - run: echo "hello from deployment-marker job..."
+      - run: 
+        - name: Sending deployment markers to event bridge
+        - command: |
+          echo "sending deployment markers to event bridge..."
 
-workflows:
-  everything:
-    jobs: 
-      - build
-      - deploy
-      - deployment-markers
 
