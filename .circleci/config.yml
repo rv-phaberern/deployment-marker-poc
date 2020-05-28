@@ -1,30 +1,58 @@
 version: 2.1 
 
 jobs:
+  # build: 
+  #   docker:
+  #     - image: circleci/node:latest
+  #   steps:
+  #     - checkout 
+  #     - run: 
+  #         name: Building project
+  #         command: |
+  #           echo "building project..."            
   build:
     docker:
       - image: circleci/node:latest
     steps:
       - checkout 
       - run: 
-          name: Printing out environment variables
+          name: Deployment markers for new relic
           command: |
             echo "CIRCLE REPOSITORY: $CIRCLE_REPOSITORY_URL"
             echo "CIRCLE BRANCH: $CIRCLE_BRANCH"
             echo "CIRCLE TAG: $CIRCLE_TAG"
-            echo "GIT COMMIT: $CIRCLE_SHA1"
             echo "Sending deployment marker to newrelic..."
-            curl  -X POST "https://api.newrelic.com/v2/applications/437777006/deployments.json" \
-                  -H "X-Api-Key: NRAA-89ad215d4a8a8986643722d8aeb" \
+            curl  -X POST "https://api.newrelic.com/v2/applications/$NR_APP_ID/deployments.json" \
+                  -H "X-Api-Key: $NR_API_KEY" \
                   -H "Content-Type: application/json" \
                   -d \
                   '{
                     "deployment":{
-                      "revision": "test-revision-from-circle",
+                      "revision": "git-commit: $CIRCLE_SHA1",
                       "user": "phaberern@redventures.com",
                       "timestamp": ""
                     }
-                  }'          
+                  }'  
+      - run:
+          name: Emit event to event bus
+          command: |
+
+# workflows:
+#   build-deploy:
+#     jobs:
+#       - build:
+#           filters:
+#             branches:
+#               only: /.*/
+#       - deploy-production:
+#           requires:
+#             - build 
+#           filters:
+#             branches:
+#               ignore: /.*/
+#             tags:
+#               only: /^V.*/
+
 
   
 
