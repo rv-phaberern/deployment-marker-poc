@@ -17,6 +17,7 @@ jobs:
             curl  -X POST "https://api.newrelic.com/v2/applications/437777006/deployments.json" \
                   -H "X-Api-Key: NRAA-89ad215d4a8a8986643722d8aeb" \
                   -H "Content-Type: application/json" \
+                  -d \
                   '{
                     "deployment":{
                       "revision": "test-revision-from-circle",
