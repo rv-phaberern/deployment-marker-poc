@@ -1,22 +1,19 @@
 version: 2.1 
 
-orbs:
-  aws-cli: circleci/aws-cli@1.0.0
-
 jobs:
   build:
     docker:
       - image: circleci/node:latest
     steps:
       - checkout 
-      - run: echo "run our curl command here!"
-  deployment-markers-service-now:
-    executor: aws-cli/default
-    steps:
-      - checkout
-      - aws-cli/setup:
-        profile-name: example
-      - run: echo "do stuff here..."
+      - run: 
+          name: Printing out environment variables
+          command: |
+            echo "CIRCLE REPOSITORY: $CIRCLE_REPOSITORY_URL"
+            echo "CIRCLE BRANCH: $CIRCLE_BRANCH"
+            echo "CIRCLE TAG: $CIRCLE_TAG"
+            echo "GIT COMMIT: $CIRCLE_SHA1"
+
   
 
     
