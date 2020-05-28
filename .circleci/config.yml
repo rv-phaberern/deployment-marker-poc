@@ -1,9 +1,23 @@
 version: 2.1 
+
+orbs:
+  aws-cli: circleci/aws-cli@1.0.0
+
 jobs:
-  build:
+  deployment-markers-service-now:
+    executor: aws-cli/default
+    steps:
+      - checkout
+      - aws-cli/setup:
+        profile-name: example
+      - run: echo "do stuff here..."
+  deployment-markers-newrelic:
     docker:
       - image: circleci/node:latest
     steps:
       - checkout 
-      - run: echo "hello world"
+      - run: echo "run our curl command here!"
+
+    
+
 
