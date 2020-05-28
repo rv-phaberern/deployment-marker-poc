@@ -36,6 +36,7 @@ jobs:
       - run:
           name: Emit event to event bus
           command: |
+            echo "emitting events to aws event bus..."
 
 # workflows:
 #   build-deploy:
