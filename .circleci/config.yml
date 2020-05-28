@@ -36,7 +36,9 @@ jobs:
       - run:
           name: Emit event to event bus
           command: |
-            echo "emitting events to aws event bus..."
+            sudo apt-get install awscli 
+            aws --version
+            
 
 # workflows:
 #   build-deploy:
