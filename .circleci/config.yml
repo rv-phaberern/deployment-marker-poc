@@ -18,7 +18,7 @@ jobs:
                   -H "X-Api-Key: NRAA-89ad215d4a8a8986643722d8aeb" \
                   -H "Content-Type: application/json" \
                   '{
-                    "deployement":{
+                    "deployment":{
                       "revision": "test-revision-from-circle",
                       "user": "phaberern@redventures.com",
                       "timestamp": ""
