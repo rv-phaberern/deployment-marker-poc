@@ -21,18 +21,19 @@ jobs:
             echo "CIRCLE REPOSITORY: $CIRCLE_REPOSITORY_URL"
             echo "CIRCLE BRANCH: $CIRCLE_BRANCH"
             echo "CIRCLE TAG: $CIRCLE_TAG"
+            echo "CIRCLE SHA1: $CIRCLE_SHA1"            
             echo "Sending deployment marker to newrelic..."
             curl  -X POST "https://api.newrelic.com/v2/applications/${NR_APP_ID}/deployments.json" \
                   -H "X-Api-Key: ${NR_API_KEY}" \
                   -H "Content-Type: application/json" \
                   -d \
-                  '{
+                  "{
                     "deployment":{
                       "revision": "git-commit: ${CIRCLE_SHA1}",
                       "user": "phaberern@redventures.com",
                       "timestamp": ""
                     }
-                  }'  
+                  }"  
       - run:
           name: Emit event to event bus
           command: |
