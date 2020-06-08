@@ -17,12 +17,13 @@ jobs:
       - checkout 
       - run: 
           name: Deployment markers for new relic
-          command: |
-            set 
+          command: |            
             echo "CIRCLE REPOSITORY: $CIRCLE_REPOSITORY_URL"
             echo "CIRCLE BRANCH: $CIRCLE_BRANCH"
             echo "CIRCLE TAG: $CIRCLE_TAG"
-            echo "CIRCLE SHA1: $CIRCLE_SHA1"            
+            echo "CIRCLE SHA1: $CIRCLE_SHA1"  
+            echo "CIRCLE PROJECT REPONAME: $CIRCLE_PROJECT_REPONAME"
+            echo "CIRCLE PROJECT USERNAME: $CIRCLE_PROJECT_USERNAME"          
             echo "Sending deployment marker to newrelic..."
             curl  -X POST "https://api.newrelic.com/v2/applications/${NR_APP_ID}/deployments.json" \
                   -H "X-Api-Key: ${NR_API_KEY}" \
@@ -30,7 +31,7 @@ jobs:
                   -d \
                   '{
                     "deployment":{
-                      "revision": "git-commit: ${CIRCLE_SHA1}",
+                      "revision": "git-commit: "'"${CIRCLE_SHA1}"'",
                       "user": "phaberern@redventures.com",
                       "timestamp": ""
                     }
