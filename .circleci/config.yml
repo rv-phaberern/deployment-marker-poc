@@ -27,13 +27,13 @@ jobs:
                   -H "X-Api-Key: ${NR_API_KEY}" \
                   -H "Content-Type: application/json" \
                   -d \
-                  "{
+                  '{
                     "deployment":{
                       "revision": "git-commit: ${CIRCLE_SHA1}",
                       "user": "phaberern@redventures.com",
                       "timestamp": ""
                     }
-                  }"  
+                  }' 
       - run:
           name: Emit event to event bus
           command: |
