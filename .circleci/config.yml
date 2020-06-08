@@ -18,6 +18,7 @@ jobs:
       - run: 
           name: Deployment markers for new relic
           command: |
+            set 
             echo "CIRCLE REPOSITORY: $CIRCLE_REPOSITORY_URL"
             echo "CIRCLE BRANCH: $CIRCLE_BRANCH"
             echo "CIRCLE TAG: $CIRCLE_TAG"
